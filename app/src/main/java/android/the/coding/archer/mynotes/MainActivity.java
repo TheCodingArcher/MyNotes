@@ -1,20 +1,25 @@
 package android.the.coding.archer.mynotes;
 
-import android.annotation.TargetApi;
+import android.app.LoaderManager;
 import android.content.ContentValues;
+import android.content.CursorLoader;
+import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements LoaderManager.LoaderCallbacks<Cursor> {
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    private CursorAdapter cursorAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,21 +27,13 @@ public class MainActivity extends AppCompatActivity {
 
         insertNote("New note");
 
-        Cursor cursor = getContentResolver().query(
-                                                NotesProvider.CONTENT_URI,
-                                                DBOpenHelper.ALL_COLUMNS,
-                                                null,
-                                                null,
-                                                null,
-                                                null
-        );
         String[] from = { DBOpenHelper.NOTE_TEXT };
         int[] to = { android.R.id.text1 };
 
-        CursorAdapter cursorAdapter = new SimpleCursorAdapter(
+        cursorAdapter = new SimpleCursorAdapter(
                 this,
                 android.R.layout.simple_list_item_1,
-                cursor,
+                null,
                 from,
                 to,
                 0
@@ -44,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
         ListView list = findViewById(android.R.id.list);
         list.setAdapter(cursorAdapter);
+
+        getLoaderManager().initLoader(0, null, this);
     }
 
     private void insertNote(String noteText) {
@@ -52,5 +51,28 @@ public class MainActivity extends AppCompatActivity {
 
         Uri noteUri = getContentResolver().insert(NotesProvider.CONTENT_URI, values);
         Log.d("MainActivity", "Inserted Note: " + noteUri.getLastPathSegment());
+    }
+
+    @NonNull
+    @Override
+    public Loader<Cursor> onCreateLoader(int i, @Nullable Bundle bundle) {
+        return new CursorLoader(
+                this,
+                NotesProvider.CONTENT_URI,
+                null,
+                null,
+                null,
+                null
+        );
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader<Cursor> loader, Cursor cursor) {
+        cursorAdapter.swapCursor(cursor);
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<Cursor> loader) {
+        cursorAdapter.swapCursor(null);
     }
 }
