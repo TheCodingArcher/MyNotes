@@ -1,4 +1,4 @@
-package android.the.coding.archer.mynotes;
+package android.the.coding.archer.mynotes.activities;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.the.coding.archer.mynotes.helper.DBOpenHelper;
+import android.the.coding.archer.mynotes.provider.NotesProvider;
+import android.the.coding.archer.mynotes.R;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;

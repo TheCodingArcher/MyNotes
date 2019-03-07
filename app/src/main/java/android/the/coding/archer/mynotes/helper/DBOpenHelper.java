@@ -1,4 +1,4 @@
-package android.the.coding.archer.mynotes;
+package android.the.coding.archer.mynotes.helper;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

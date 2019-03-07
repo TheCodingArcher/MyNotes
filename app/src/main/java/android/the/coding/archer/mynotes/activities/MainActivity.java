@@ -1,4 +1,4 @@
-package android.the.coding.archer.mynotes;
+package android.the.coding.archer.mynotes.activities;
 
 import android.app.AlertDialog;
 import android.app.LoaderManager;
@@ -13,6 +13,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.the.coding.archer.mynotes.helper.DBOpenHelper;
+import android.the.coding.archer.mynotes.adapter.NotesCursorAdapter;
+import android.the.coding.archer.mynotes.provider.NotesProvider;
+import android.the.coding.archer.mynotes.R;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;

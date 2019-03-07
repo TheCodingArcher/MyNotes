@@ -1,7 +1,9 @@
-package android.the.coding.archer.mynotes;
+package android.the.coding.archer.mynotes.adapter;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.the.coding.archer.mynotes.helper.DBOpenHelper;
+import android.the.coding.archer.mynotes.R;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

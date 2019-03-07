@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,15 +18,15 @@
         </activity>
 
         <provider
-            android:name=".NotesProvider"
+            android:name=".provider.NotesProvider"
             android:authorities="android.the.coding.archer.mynotes.notesprovider"
             android:exported="false" />
 
-        <activity android:name=".EditorActivity"
+        <activity android:name=".activities.EditorActivity"
             android:label="@string/activity_editor"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".activities.MainActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value="android.the.coding.archer.mynotes.MainActivity" />
+                android:value="android.the.coding.archer.mynotes.activities.MainActivity" />
         </activity>
     </application>
 
