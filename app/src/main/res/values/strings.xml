@@ -8,4 +8,6 @@
     <string name="activity_editor">EditorActivity</string>
     <string name="new_note">New Note</string>
     <string name="note_updated">Note Updated</string>
+    <string name="action_delete">Delete</string>
+    <string name="note_deleted">Note Deleted</string>
 </resources>

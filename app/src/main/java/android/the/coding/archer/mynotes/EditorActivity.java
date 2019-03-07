@@ -51,7 +51,9 @@ public class EditorActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_editor, menu);
+        if (action.equals(Intent.ACTION_EDIT)) {
+            getMenuInflater().inflate(R.menu.menu_editor, menu);
+        }
         return true;
     }
 
@@ -62,6 +64,9 @@ public class EditorActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finishEditing();
+                break;
+            case R.id.action_delete:
+                deleteNote();
                 break;
         }
 
@@ -81,7 +86,7 @@ public class EditorActivity extends AppCompatActivity {
                 break;
             case Intent.ACTION_EDIT:
                 if (newText.length() == 0) {
-//                    deleteNote();
+                    deleteNote();
                 } else if (oldText.equals(newText)) {
                     setResult(RESULT_CANCELED);
                 } else {
@@ -110,5 +115,12 @@ public class EditorActivity extends AppCompatActivity {
         getContentResolver().update(NotesProvider.CONTENT_URI, values, noteFilter, null);
         Toast.makeText(this, R.string.note_updated, Toast.LENGTH_SHORT).show();
         setResult(RESULT_OK);
+    }
+
+    private void deleteNote() {
+        getContentResolver().delete(NotesProvider.CONTENT_URI, noteFilter, null);
+        Toast.makeText(this, R.string.note_deleted, Toast.LENGTH_SHORT).show();
+        setResult(RESULT_OK);
+        finish();
     }
 }
