@@ -42,6 +42,7 @@ public class EditorActivity extends AppCompatActivity {
                     null,
                     null
             );
+
             cursor.moveToFirst();
             oldText = cursor.getString(cursor.getColumnIndex(DBOpenHelper.NOTE_TEXT));
             editor.setText(oldText);
@@ -61,7 +62,7 @@ public class EditorActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch (item.getItemId()) {
+        switch (id) {
             case android.R.id.home:
                 finishEditing();
                 break;
