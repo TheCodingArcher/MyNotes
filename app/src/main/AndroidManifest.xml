@@ -18,9 +18,16 @@
         </activity>
 
         <provider
-            android:authorities="android.the.coding.archer.mynotes.notesprovider"
             android:name=".NotesProvider"
+            android:authorities="android.the.coding.archer.mynotes.notesprovider"
             android:exported="false" />
+
+        <activity android:name=".EditorActivity"
+            android:label="@string/activity_editor"
+            android:parentActivityName=".MainActivity">
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                android:value="android.the.coding.archer.mynotes.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
